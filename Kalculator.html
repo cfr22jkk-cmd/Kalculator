@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalculator</title>
+  <style>
+    body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: hsl(0, 0%, 10%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    .contanior{
+        background-color: hsl(0, 0%, 15%);
+        border-radius: 25px;
+        max-width: 550px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgb(0, 0, 0);
+    }
+    #display{
+        margin:0 15px;
+        margin-top: 15px;
+        width: 350px;
+        padding: 35px 25px;
+        font-size: 3.2rem;
+        outline: none;
+        border: none;
+        border-radius: 15px;
+        background-color: hsl(0, 0%, 25%);
+        color: white;
+    }
+    #keys{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 10px;
+        padding: 25px;
+    }
+    button{
+        width: 85px;
+        height: 85px;
+        border: none;
+        border-radius: 20px;
+        background-color: hsl(0, 0%, 30%);
+        cursor: pointer;
+        color: white;
+        font-size: 3rem;
+        font-weight: bold;
+        outline: none;
+    }
+    button:hover{
+        background-color: hsl(0, 0%, 40%);
+    }
+    button:active{
+        background-color: hsl(0, 0%, 50%);
+    }
+
+    .opreation-bt{
+        background-color: hsl(39, 100%, 45%);
+    }
+    .opreation-bt:hover{
+        background-color: hsl(39, 100%, 60%);
+    }
+    .opreation-bt:active{
+        background-color: hsl(39, 100%, 65%);
+    }
+
+    .clear-bt{
+        background-color: hsl(0, 84%, 52%);
+    }
+    .clear-bt:hover{
+        background-color: hsl(0, 84%, 57%);
+    }
+    .clear-bt:active{
+        background-color: hsl(0, 84%, 60%);
+    }
+
+    .equal-bt{
+        background-color: hsl(84, 100%, 45%);
+    }
+    .equal-bt:hover{
+        background-color: hsl(84, 100%, 50%);
+    }
+    .equal-bt:active{
+        background-color: hsl(84, 100%, 65%);
+    }
+
+    #delete{
+        font-size: 2.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="contanior">
+        <input id="display" readonly>
+        <div id="keys">
+            <button onclick="clearDisplay()" class="clear-bt">C</button>
+            <button onclick="deleteNum()" class="opreation-bt" id="delete">DEL</button>
+            <!-- <button onclick="deleteNum()" class="opreation-bt"><i class="fa-solid fa-delete-left"></i></button> -->
+            <button onclick="appendToDisplay('%')" class="opreation-bt">%</button>
+            <button onclick="appendToDisplay('+')" class="opreation-bt">+</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('-')" class="opreation-bt">-</button>
+            
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('*')" class="opreation-bt">*</button>
+            
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('/')" class="opreation-bt">/</button>
+            
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('00')">00</button>
+            <button onclick="calculate()" class="equal-bt">=</button>
+        </div>
+  <script>
+    const display = document.getElementById("display");
+
+    function appendToDisplay(input){
+        display.value += input;
+    }
+
+    function clearDisplay(){
+        display.value = "";
+    }
+
+    function calculate(){
+        try{
+            if (display.value === "2+2"){
+                display.value = "Hello, World!";
+            }
+            else{
+                display.value = eval(display.value)
+            }
+        }
+        catch{
+            display.value = "Error";
+        }
+    }
+
+    function deleteNum(){
+        display.value = display.value.slice(0, -1);
+    };
+  </script>
+</body>
+</html>
